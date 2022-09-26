@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+Buscar Album
+{% endblock title%}
+
+{% block contenido %}
+<form>
+    <div class="input-group input-group-sm mb-3 mt-4">
+        <input name="q" type="text" class="form-control" placeholder="buscar Album por: Nombre, Interprete o Genero...">
+        <button class="btn btn-secondary"><i class="fas fa-search"></i>Buscar</button>
+        <a href={% url 'buscar' %}  class="btn btn-dark" style="margin-left: 2px;"><i class="fas fa-sync-alt"></i></a>
+    </div>
+</form>     
+
+<center>
+    <table class="table table-bordered table-sm mt-4" style="text-align: center; fron-size: 14px;">
+        <thead class="table-danger">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Interprete</th>
+                <th>Genero</th>
+                <th>Discografica</th>
+                <th>Formato</th>
+                <th>fech. Lanzamiento</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Caratula</th>
+                
+            </tr>
+        </thead>
+        {% for album in album %}
+        <tr> 
+            <td>{{ album.id }}</td>
+            <td>{{ album.nombre }}</td>
+            <td>{{ album.interprete }}</td>
+            <td>{{ album.cant_temas }}</td>
+            <td>{{ album.discografica }}</td>
+            <td>{{ album.formato }}</td>
+            <td>{{ album.fec_lanzamiento }}</td>
+            <td>{{ album.precio }}</td>
+            <td>{{ album.cantidad }}</td>
+            <td> {% if object.imagen %}
+                    <img src="{{ object.imagen.url }}"alt="" height="50px">
+                {% endif %} </td>
+        {% endfor %}
+        </tr>
+    </table>
+</center>
+    <nav class="my-4>
+        {% if album.has_other_pages %}
+        <ul class="pagination justify-content-left">
+            {% if album.has_previus %}
+            <a href="?page=1" class="btn btn-outline-primary mb-4" style="width:60px; border-radius: 1px; border: 1px solid #d3d3d3;First></a>
+            <li class="page-item"><a class="page-link" href="?page={{ album.previous_page_number }}"><i class="fas fa-angle-double-left"></i>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+
+            {% for i in album.paginator.page_range %}
+                {% if album.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }}<spam class="sr-only"></spam></spam></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page"={{ i }}>{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if album.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ album.next_page_number }}"><i class="fas fa-angle-double-right"></i></a></li>
+            <a href="#" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: 2px"></a>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+
+        {% endif %}            
+
+            <a></a>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <a></a>
+        </ul>
+    </nav>    
+    
+<center>
+    <div class="d-grid gap-2">
+        <a class="btn btn-primary" href={% url 'proyecto'%}>Volver al Proyecto</a>
+        </div> 
+        <br>
+      
+{% endblock contenido %}

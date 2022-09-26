@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+Lista de Interpretes
+{% endblock title%}
+
+{% block contenido %}
+<center>
+    <center>
+        <br>
+        <a class="btn btn-secondary"<a href={% url 'proyecto'  %}>Ir al Poyecto</a>
+    <p>
+        <div class="d-grid gap-2">
+            <a class="btn btn-primary" href={% url 'crear_interprete'  %}>Crear Interprete</a>
+    </p>
+    
+</center>
+<div>
+    <div class="p-3 mb-2 bg-dark text-white">
+    {% if object_list %}
+    <h1>
+     <ul class="list-grup-item list-grup-flush">
+        {% for interprete in object_list %}
+            {{interprete.nombre}}
+            <li class="list-grup-item">
+                
+                <a class="btn btn-primary"<a href={% url 'mostrar_interprete' interprete.id %}>Mostrar Interprete</a>
+                <a class="btn btn-success"<a href={% url 'editar_interprete' interprete.id %}>Editar Interprete</a>
+                <a class="btn btn-warning"<a href={% url 'eliminar_interprete' interprete.id %}>Eliminar Interprete</a>
+            </li>
+        {% endfor %}
+    </div>
+    {% else %}
+            <p> No hay Interpretes Registrados </p>
+    {% endif%}
+               
+</div>
+{% endblock contenido %}

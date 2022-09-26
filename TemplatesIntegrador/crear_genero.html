@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+Crear ingreso de Genero
+{% endblock title%}
+
+{% block contenido %}
+<div class="d-grid gap-2">
+    <a class="btn btn-primary" href={% url 'listar_genero'%}>Ir a la Lista GENERO</a>
+    </div>
+<center>
+    <p>
+        <h1><B><FONT COLOR="red">CARGA DE GENERO</FONT></h1>
+            
+
+<div>
+    <form action={% url 'crear_genero' %}  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-dark table-striped">
+            {{form.as_table}}
+        </table>
+        <center>
+            <div class="d-grid gap-2">
+                <button class="btn btn-danger"> ==> INGRESAR GENERO<==</button> <a class="btn btn-primary" href={% url 'proyecto'%}>Volver al Poyecto</a>
+        </div>
+    </form>
+</div>
+<br>
+
+{% endblock contenido %}

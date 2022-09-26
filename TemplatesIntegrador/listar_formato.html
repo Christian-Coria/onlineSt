@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+Lista de formatos
+{% endblock title%}
+
+{% block contenido %}
+<center>
+    <center>
+        <br>
+        <a class="btn btn-secondary"<a href={% url 'proyecto'  %}>Ir al Poyecto</a>
+    
+    <p>
+        <div class="d-grid gap-2">
+            <a class="btn btn-primary" href={% url 'crear_formato'  %}>Crear formato</a>
+    </p>
+    
+</center>
+<div>
+    <div class="p-3 mb-2 bg-dark text-white">
+    {% if object_list %}
+    <h1>
+     <ul class="list-grup-item list-grup-flush">
+        {% for formato in object_list %}
+            {{formato.nombre}}
+            <li class="list-grup-item">
+                
+                <a class="btn btn-primary"<a href={% url 'mostrar_formato' formato.id %}>Mostrar formato</a>
+                <a class="btn btn-success"<a href={% url 'editar_formato' formato.id %}>Editar Formato</a>
+                <a class="btn btn-warning"<a href={% url 'eliminar_formato' formato.id %}>Eliminar Formato</a>
+            </li>
+        {% endfor %}
+    </div>
+    {% else %}
+            <p> No hay Formatos Registrados </p>
+    {% endif%}
+               
+</div>
+{% endblock contenido %}
